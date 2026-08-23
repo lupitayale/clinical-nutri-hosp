@@ -1,0 +1,6 @@
+{
+  "appId": "com.clinicalnutri.ultimate",
+  "appName": "ClinicalNutri Pro",
+  "webDir": ".",
+  "bundledWebRuntime": false
+}
