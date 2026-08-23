@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClinicalNutri Hospital Pro - Ultimate Edition</title>
+    <title>ClinicalNutri Hospital Pro - Expert Edition</title>
     <style>
-        :root { --primary: #070f1e; --secondary: #111e38; --accent: #00f2fe; --accent-dark: #4facfe; --alert: #ff4b2b; --warn: #f7b733; --bg: #0b132b; --card-bg: #1c2541; --text: #e0fbfc; --text-dim: #8d99ae; }
+        :root { --primary: #050b14; --secondary: #0d1b2a; --accent: #00f2fe; --accent-dark: #4facfe; --alert: #ff4b2b; --warn: #f7b733; --bg: #090e17; --card-bg: #1b263b; --text: #e0fbfc; --text-dim: #8d99ae; }
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); margin: 0; padding: 0; color: var(--text); }
         header { background: var(--primary); color: white; padding: 20px; text-align: center; border-bottom: 2px solid var(--accent); box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
         header h1 { margin: 0; font-size: 1.5rem; font-weight: 800; color: #fff; letter-spacing: 0.5px; }
@@ -19,8 +19,8 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        .card { background: var(--card-bg); padding: 20px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.4); margin-bottom: 15px; border: 1px solid #3a506b; }
-        h2 { font-size: 1.15rem; color: var(--accent); border-bottom: 2px solid #3a506b; padding-bottom: 8px; margin-top: 0; display: flex; justify-content: space-between; align-items: center; }
+        .card { background: var(--card-bg); padding: 20px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.4); margin-bottom: 15px; border: 1px solid #415a77; }
+        h2 { font-size: 1.15rem; color: var(--accent); border-bottom: 2px solid #415a77; padding-bottom: 8px; margin-top: 0; display: flex; justify-content: space-between; align-items: center; }
         
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
@@ -28,69 +28,120 @@
         @media(max-width: 700px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; } }
 
         label { display: block; font-size: 0.75rem; margin-top: 10px; color: var(--text-dim); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-        input, select, textarea { width: 100%; padding: 10px; margin-top: 4px; border: 1px solid #48cae4; border-radius: 8px; box-sizing: border-box; font-size: 0.95rem; background: #0b132b; color: #fff; }
+        input, select, textarea { width: 100%; padding: 10px; margin-top: 4px; border: 1px solid #778da9; border-radius: 8px; box-sizing: border-box; font-size: 0.95rem; background: #0d1b2a; color: #fff; }
         input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
 
-        button.action-btn { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: #0b132b; border: none; padding: 12px; width: 100%; border-radius: 8px; font-weight: 800; font-size: 0.95rem; margin-top: 15px; cursor: pointer; transition: all 0.2s; box-shadow: 0 3px 10px rgba(0,242,254,0.3); }
+        button.action-btn { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: #0d1b2a; border: none; padding: 12px; width: 100%; border-radius: 8px; font-weight: 800; font-size: 0.95rem; margin-top: 15px; cursor: pointer; transition: all 0.2s; box-shadow: 0 3px 10px rgba(0,242,254,0.3); }
         button.action-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
 
-        .results-box { background: #0b132b; border: 1px solid var(--accent); padding: 15px; border-radius: 8px; margin-top: 15px; font-size: 0.9rem; color: var(--text); line-height: 1.6; }
+        .print-btn { background: linear-gradient(135deg, #f7b733 0%, #fc4a1a 100%); color: #fff; }
+
+        .results-box { background: #0d1b2a; border: 1px solid var(--accent); padding: 15px; border-radius: 8px; margin-top: 15px; font-size: 0.9rem; color: var(--text); line-height: 1.6; display: block; }
         .alert-box { background: #3a1c07; border: 1px solid #f7b733; padding: 15px; border-radius: 8px; margin-top: 15px; font-size: 0.9rem; color: #ffeb99; line-height: 1.6; }
         .danger-box { background: #3a0707; border: 1px solid #ff4b2b; padding: 15px; border-radius: 8px; margin-top: 15px; font-size: 0.9rem; color: #ffb3b3; line-height: 1.6; }
-        .badge { display: inline-block; padding: 3px 8px; font-size: 0.75rem; font-weight: bold; border-radius: 4px; background: #3a506b; color: var(--accent); }
+        .badge { display: inline-block; padding: 3px 8px; font-size: 0.75rem; font-weight: bold; border-radius: 4px; background: #415a77; color: var(--accent); }
+
+        /* Estilos específicos para impresión / PDF */
+        @media print {
+            body { background: #fff; color: #000; }
+            header, .nav-tabs, button, .action-btn { display: none !important; }
+            .container { max-width: 100% !important; margin: 0 !important; padding: 0 !important; }
+            .card { background: #fff !important; border: 1px solid #ccc !important; box-shadow: none !important; color: #000 !important; }
+            input, select, textarea { background: #fff !important; color: #000 !important; border: 1px solid #999 !important; }
+            .results-box { background: #f9f9f9 !important; color: #000 !important; border: 1px solid #333 !important; }
+            .tab-content { display: block !important; }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>ClinicalNutri Hospital Pro <span class="badge">Nivel III Interconectado</span></h1>
-        <p>Plataforma de Alta Especialidad: Maestro Clínico, NPT, Menús Automáticos & Enteral por Equivalentes</p>
+        <h1>ClinicalNutri Hospital Pro <span class="badge">Nivel III Expert</span></h1>
+        <p>Sistema Clínico de Alta Especialidad con Progresión Realimentación, Desglose por Toma y Firma Institucional</p>
     </header>
 
     <div class="nav-tabs">
-        <button class="tab-btn active" onclick="switchTab(event, 'tab-master')">1. Maestro & Equivalentes</button>
+        <button class="tab-btn active" onclick="switchTab(event, 'tab-master')">1. Maestro & Progresión</button>
         <button class="tab-btn" onclick="switchTab(event, 'tab-labs')">2. Labs Avanzados</button>
         <button class="tab-btn" onclick="switchTab(event, 'tab-npt')">3. Parenteral NPT</button>
-        <button class="tab-btn" onclick="switchTab(event, 'tab-menus')">4. Menús Automáticos</button>
-        <button class="tab-btn" onclick="switchTab(event, 'tab-licuados')">5. Enteral & Equivalentes</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-menus')">4. Menús Clínicos</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-licuados')">5. Licuados por Tomas & Módulos</button>
         <button class="tab-btn" onclick="switchTab(event, 'tab-smae')">6. SMAE 18 Grupos</button>
     </div>
 
     <div class="container">
 
-        <!-- TAB 1: MAESTRO PACIENTE Y TRADUCCIÓN A EQUIVALENTES -->
+        <!-- TAB 1: MAESTRO PACIENTE, ANTROPOMETRÍA Y PROGRESIÓN -->
         <div id="tab-master" class="tab-content active">
             <div class="card">
-                <h2>1. Motor Metabólico & Traducción Automática a Equivalentes SMAE</h2>
+                <h2>1. Identificación, Antropometría & % Progresión (Realimentación)</h2>
                 <div class="grid-3">
-                    <div><label>Peso Actual (kg)</label><input type="number" id="m_peso" value="70"></div>
-                    <div><label>Talla (cm)</label><input type="number" id="m_talla" value="170"></div>
-                    <div><label>Edad (Años)</label><input type="number" id="m_edad" value="50"></div>
+                    <div><label>Nutriólogo(a) Tratante</label><input type="text" id="m_nutriologo" value="Lic. Alejandro Castro A." oninput="calcularNucleoMaestro()"></div>
+                    <div><label>Cédula Profesional</label><input type="text" id="m_cedula" value="12345678" oninput="calcularNucleoMaestro()"></div>
+                    <div><label>Cama / Servicio Hospitalario</label><input type="text" id="m_cama" value="Piso 3 - Cama 12" oninput="calcularNucleoMaestro()"></div>
                 </div>
                 <div class="grid-3">
-                    <div><label>Género</label><select id="m_genero"><option value="M">Masculino</option><option value="F">Femenino</option></select></div>
+                    <div><label>Peso Actual / Ingreso (kg)</label><input type="number" id="m_peso" value="70" oninput="calcularNucleoMaestro()"></div>
+                    <div><label>Talla (cm)</label><input type="number" id="m_talla" value="170" oninput="calcularNucleoMaestro()"></div>
+                    <div><label>Edad (Años)</label><input type="number" id="m_edad" value="50" oninput="calcularNucleoMaestro()"></div>
+                </div>
+                <div class="grid-3">
+                    <div><label>Género</label><select id="m_genero" onchange="calcularNucleoMaestro()"><option value="M">Masculino</option><option value="F">Femenino</option></select></div>
                     <div>
-                        <label>Patología / Condición Clínica</label>
-                        <select id="m_patologia">
-                            <option value="critico">Paciente Crítico / UCI (Sepsis / Trauma)</option>
-                            <option value="erc_hd">ERC en Hemodiálisis Estricta</option>
-                            <option value="cirrosis">Cirrosis Hepática / Ascitis</option>
-                            <option value="quemado">Gran Quemado / Hipermetabólico</option>
-                            <option value="dm_complicado">DM2 Descompensada / Hospitalizado</option>
+                        <label>Condición Hospitalaria / Edema</label>
+                        <select id="m_edema" onchange="calcularNucleoMaestro()">
+                            <option value="0">Sin Edema / Ascitis (Peso Actual = Seco)</option>
+                            <option value="1">Edema Leve / Ascitis Leve (- 1 a 2 kg)</option>
+                            <option value="2">Edema Moderado / Anasarca (- 5 kg)</option>
+                            <option value="3">Edema Severo / Anasarca Grave (- 10 kg)</option>
                         </select>
                     </div>
                     <div>
-                        <label>Factor Estrés</label>
-                        <select id="m_factor">
+                        <label>Porcentaje de Avance (Realimentación)</label>
+                        <select id="m_porcentaje_avance" onchange="calcularNucleoMaestro()">
+                            <option value="1.0">100% de la Meta (Dieta Completa)</option>
+                            <option value="0.75">75% de Avance (Día 3-4 Realimentación)</option>
+                            <option value="0.50" selected>50% de Avance (Día 1-2 Realimentación)</option>
+                            <option value="0.33">33% de Avance (Inicio Estricto)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid-3">
+                    <div>
+                        <label>Proteína Asignada (g/kg)</label>
+                        <select id="m_prot_g_kg" onchange="calcularNucleoMaestro()">
+                            <option value="0.6">0.6 g/kg (ERC pre-diálisis estricta)</option>
+                            <option value="0.8">0.8 g/kg (ERC no dializada)</option>
+                            <option value="1.0">1.0 g/kg (Mantenimiento)</option>
+                            <option value="1.2" selected>1.2 g/kg (Moderado / Hospitalizado)</option>
+                            <option value="1.5">1.5 g/kg (Alto estrés / Sepsis / Diálisis)</option>
+                            <option value="2.0">2.0 g/kg (Gran Quemado / Catabolismo severo)</option>
+                        </select>
+                    </div>
+                    <div><label>% Deseado Carbohidratos</label><input type="number" id="m_p_carb" value="55" oninput="calcularNucleoMaestro()"></div>
+                    <div><label>% Deseado Lípidos</label><input type="number" id="m_p_gras" value="25" oninput="calcularNucleoMaestro()"></div>
+                </div>
+                <div class="grid-2">
+                    <div>
+                        <label>Factor Estrés / Actividad</label>
+                        <select id="m_factor" onchange="calcularNucleoMaestro()">
                             <option value="1.2">Reposo / Leve (1.2)</option>
                             <option value="1.35">Postquirúrgico / Moderado (1.35)</option>
                             <option value="1.5">Sepsis / Alto Estrés (1.5)</option>
-                            <option value="1.75">Gran Quemado (1.75)</option>
+                            <option value="1.75">Gran Quemado / Hipermetabólico (1.75)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Ecuación Metabólica</label>
+                        <select id="m_eq" onchange="calcularNucleoMaestro()">
+                            <option value="mifflin">Mifflin-St. Jeor (Estándar)</option>
+                            <option value="harris">Harris-Benedict</option>
+                            <option value="kilo">Simple por kg (25-30 kcal)</option>
                         </select>
                     </div>
                 </div>
-                <button class="action-btn" onclick="calcularNucleoMaestro()">Calcular Requerimientos y Traducir a Porciones SMAE</button>
-                <div id="res_master" class="results-box" style="display:none;"></div>
+                <div id="res_master" class="results-box">Calculando...</div>
+                <button class="action-btn print-btn" onclick="window.print()">🖨️ Imprimir / Guardar Expediente en PDF</button>
             </div>
         </div>
 
@@ -142,41 +193,58 @@
         <!-- TAB 4: MENÚS HOSPITALARIOS AUTOMÁTICOS -->
         <div id="tab-menus" class="tab-content">
             <div class="card">
-                <h2>4. Generador Automático de Menús Clínicos Hospitalarios</h2>
+                <h2>4. Menús Clínicos Especializados & Sincronizados con SMAE</h2>
                 <label>Seleccionar Tipo de Dieta Hospitalaria</label>
                 <select id="menu_tipo" onchange="generarMenuAutomatico()">
                     <option value="normal">Dieta Normal / Blanda Hospitalaria</option>
+                    <option value="diabetica">Dieta para Paciente con Diabetes (Control de Carbohidratos)</option>
                     <option value="hiposodica">Dieta Hiposódica Estricta (Cardiópatas/Nefrópatas)</option>
-                    <option value="renal">Dieta Protección Renal (Restricción K+, P y Proteína)</option>
-                    <option value="diabetica">Dieta Hipoglucémica / Conteo de Carbohidratos</option>
+                    <option value="renal_dialisis">Dieta Nefrópata en Diálisis (Alto aporte proteico, restricción K/P)</option>
+                    <option value="renal_sindiálisis">Dieta Nefrópata sin Diálisis / Pre-diálisis (Restricción proteica estricta)</option>
+                    <option value="hiperproteica">Dieta Hiperproteica (Catabolismo / Cicatrización)</option>
+                    <option value="laxante">Dieta Laxante / Alta en Fibra (Estreñimiento)</option>
+                    <option value="astringente">Dieta Astringente / Baja en Residuo (Colitis / Diarrea)</option>
+                    <option value="pure">Dieta en Puré / Mecánicamente Suave (Disfagia)</option>
+                    <option value="vegetariana">Dieta Vegetariana Hospitalaria</option>
                     <option value="liquida">Dieta Líquida Completa / Postquirúrgica</option>
                 </select>
 
                 <div style="margin-top: 15px;" id="contenedor_menu_generado">
                     <!-- Se llena automáticamente -->
                 </div>
-                <button class="action-btn" onclick="generarMenuAutomatico()">Actualizar Menú con Metas Actuales</button>
+                <button class="action-btn print-btn" onclick="window.print()" style="margin-top:15px;">🖨️ Imprimir Menú Clínico</button>
             </div>
         </div>
 
-        <!-- TAB 5: FORMULACIÓN DE LICUADOS Y EQUIVALENTES ENTERALES -->
+        <!-- TAB 5: FORMULACIÓN DE LICUADOS, ORALES Y MÓDULOS POR TOMAS -->
         <div id="tab-licuados" class="tab-content">
             <div class="card">
-                <h2>5. Fórmulas Enterales Artesanales con Equivalentes SMAE Integrados</h2>
-                <p style="font-size:0.85rem; color:var(--text-dim);">Combina ingredientes institucionales y observa el desglose exacto de equivalentes y densidad calórica para sonda o gastrostomía.</p>
+                <h2>5. Licuados Artesanales por Toma, Control Dinámico & Módulos</h2>
+                <p style="font-size:0.8rem; color:var(--text-dim);">Diseña mezclas seguras y obtén el desglose exacto por toma para indicar al familiar o al servicio de dietas.</p>
                 
                 <div class="grid-3">
-                    <div><label>Volumen Objetivo (mL)</label><input type="number" id="lic_vol" value="500"></div>
-                    <div><label>Leche Entera / Vegetal (mL)</label><input type="number" id="lic_leche" value="300"></div>
-                    <div><label>Avena en Hojuelas (g)</label><input type="number" id="lic_avena" value="40"></div>
+                    <div><label>Número de Tomas al Día</label><input type="number" id="lic_tomas" value="5" min="1" max="8" oninput="calcularFormulaEnteralAvanzada()"></div>
+                    <div><label>Volumen Objetivo Total (mL)</label><input type="number" id="lic_vol" value="1000" oninput="calcularFormulaEnteralAvanzada()"></div>
+                    <div><label>Leche Entera / Descremada (mL)</label><input type="number" id="lic_leche" value="400" oninput="calcularFormulaEnteralAvanzada()"></div>
                 </div>
                 <div class="grid-3">
-                    <div><label>Aceite de Canola / MCT (mL)</label><input type="number" id="lic_aceite" value="10"></div>
-                    <div><label>Maltodextrina / Azúcar (g)</label><input type="number" id="lic_carbo" value="30"></div>
-                    <div><label>Módulo Proteico / Caseinato (g)</label><input type="number" id="lic_prot" value="20"></div>
+                    <div><label>Avena en Hojuelas (g)</label><input type="number" id="lic_avena" value="50" oninput="calcularFormulaEnteralAvanzada()"></div>
+                    <div><label>Harina de Arroz Preparada (g)</label><input type="number" id="lic_harina_arroz" value="30" oninput="calcularFormulaEnteralAvanzada()"></div>
+                    <div><label>Pan Blanco sin Orillas (g)</label><input type="number" id="lic_pan_blanco" value="40" oninput="calcularFormulaEnteralAvanzada()"></div>
                 </div>
-                <button class="action-btn" onclick="calcularFormulaEnteralAvanzada()">Calcular Licuado, Densidad, mL/h & Equivalentes SMAE</button>
+                <div class="grid-3">
+                    <div><label>Galletas Marías (g)</label><input type="number" id="lic_galletas" value="30" oninput="calcularFormulaEnteralAvanzada()"></div>
+                    <div><label>Fruta Licuada/Cocida (Plátano/Fresas) (g)</label><input type="number" id="lic_fruta" value="80" oninput="calcularFormulaEnteralAvanzada()"></div>
+                    <div><label>Polimérica en Polvo / Caseinato (g)</label><input type="number" id="lic_polimerica" value="25" oninput="calcularFormulaEnteralAvanzada()"></div>
+                </div>
+                <div class="grid-3">
+                    <div><label>Módulo Proteico Extra (g)</label><input type="number" id="lic_prot" value="20" oninput="calcularFormulaEnteralAvanzada()"></div>
+                    <div><label>Aceite de Canola / MCT (mL)</label><input type="number" id="lic_aceite" value="15" oninput="calcularFormulaEnteralAvanzada()"></div>
+                    <div><label>Maltodextrina / Azúcar (g)</label><input type="number" id="lic_carbo" value="30" oninput="calcularFormulaEnteralAvanzada()"></div>
+                </div>
+
                 <div id="res_licuado" class="results-box" style="display:none;"></div>
+                <button class="action-btn print-btn" onclick="window.print()" style="margin-top:15px;">🖨️ Imprimir Receta de Licuados por Toma</button>
             </div>
         </div>
 
@@ -184,8 +252,9 @@
         <div id="tab-smae" class="tab-content">
             <div class="card">
                 <h2>6. Sistema Mexicano de Alimentos Equivalentes (18 Grupos)</h2>
+                <p style="font-size:0.8rem; color:var(--accent);">✓ Sincronizado automáticamente con las porciones requeridas del paciente (considerando el % de progresión).</p>
                 <div id="smae-list" style="margin-top: 15px;"></div>
-                <div style="background: #0b132b; padding: 12px; border-radius: 8px; margin-top: 15px; font-weight: bold; text-align: center; border: 1px solid var(--accent);" id="smae-totales">
+                <div style="background: #0d1b2a; padding: 12px; border-radius: 8px; margin-top: 15px; font-weight: bold; text-align: center; border: 1px solid var(--accent);" id="smae-totales">
                     Total: 0 kcal | Prot: 0g | Carbs: 0g | Grasas: 0g
                 </div>
                 <button class="action-btn" style="background:#ff4b2b; color:#fff; margin-top: 10px;" onclick="reiniciarSMAE()">Reiniciar Conteo</button>
@@ -195,193 +264,8 @@
     </div>
 
     <script>
-        let pacienteClinico = { peso: 70, get: 2000, prot: 84, carb: 250, gras: 70 };
+        let pacienteClinico = { pesoSeco: 70, get: 2000, prot: 84, carb: 250, gras: 70 };
 
-        function switchTab(evt, tabId) {
-            let contents = document.getElementsByClassName("tab-content");
-            for (let c of contents) c.classList.remove("active");
-            let buttons = document.getElementsByClassName("tab-btn");
-            for (let b of buttons) b.classList.remove("active");
-            document.getElementById(tabId).classList.add("active");
-            evt.currentTarget.classList.add("active");
-            if(tabId === 'tab-menus') { generarMenuAutomatico(); }
-        }
-
-        function calcularNucleoMaestro() {
-            let peso = parseFloat(document.getElementById('m_peso').value);
-            let talla = parseFloat(document.getElementById('m_talla').value);
-            let edad = parseFloat(document.getElementById('m_edad').value);
-            let genero = document.getElementById('m_genero').value;
-            let patologia = document.getElementById('m_patologia').value;
-            let factor = parseFloat(document.getElementById('m_factor').value);
-
-            let geb = (10 * peso) + (6.25 * talla) - (5 * edad) + ((genero === 'M') ? 5 : -161);
-            let get = geb * factor;
-
-            let pMin = 1.0, pMax = 1.2, notas = "";
-            if(patologia === 'critico') { pMin = 1.3; pMax = 1.5; notas = "Soporte UCI: Alto requerimiento nitrogenado."; }
-            else if(patologia === 'erc_hd') { pMin = 1.1; pMax = 1.3; notas = "Hemodiálisis: Compensación proteica."; }
-            else if(patologia === 'cirrosis') { pMin = 1.2; pMax = 1.5; notas = "Cirrosis: Colación nocturna obligatoria."; }
-            else if(patologia === 'quemado') { pMin = 1.5; pMax = 2.0; get = peso * 35; notas = "Gran Quemado: Hipermetabolismo severo."; }
-            else if(patologia === 'dm_complicado') { pMin = 1.0; pMax = 1.2; notas = "Metabólico: Control de carga glucémica."; }
-
-            let protGramos = peso * pMin;
-            let grasGramos = (get * 0.30) / 9;
-            let carbGramos = (get - (protGramos * 4) - (grasGramos * 9)) / 4;
-
-            pacienteClinico = { peso: peso, get: get, prot: protGramos, carb: carbGramos, gras: grasGramos };
-
-            // TRADUCCIÓN AUTOMÁTICA A EQUIVALENTES SMAE APROXIMADOS
-            // Basado en distribución estándar clínica de porciones
-            let eqVerduras = Math.round(carbGramos * 0.02);
-            let eqFrutas = Math.round(carbGramos * 0.015);
-            let eqCereales = Math.round(carbGramos * 0.18);
-            let eqLeguminosas = 1;
-            let eqAOA = Math.round(protGramos * 0.12);
-            let eqLeche = 2;
-            let eqGrasas = Math.round(grasGramos * 0.12);
-            let eqAzucares = 2;
-
-            document.getElementById('n_peso').value = peso;
-            document.getElementById('n_aa').value = Math.round(protGramos);
-            document.getElementById('n_dex').value = Math.round(carbGramos * 0.8);
-
-            document.getElementById('res_master').style.display = "block";
-            document.getElementById('res_master').innerHTML = `<strong>GET Clínico:</strong> ${get.toFixed(0)} kcal/día | <strong>Proteínas:</strong> ${protGramos.toFixed(0)}g<br>` +
-                `<strong>Traducción a Porciones SMAE Sugeridas (Guía Diaria):</strong><br>` +
-                `• Verduras: <strong>${eqVerduras}</strong> | Frutas: <strong>${eqFrutas}</strong> | Cereales: <strong>${eqCereales}</strong><br>` +
-                `• Leguminosas: <strong>${eqLeguminosas}</strong> | AOA (Bajo/Mod): <strong>${eqAOA}</strong> | Leche: <strong>${eqLeche}</strong><br>` +
-                `• Aceites y Grasas: <strong>${eqGrasas}</strong> | Azúcares: <strong>${eqAzucares}</strong><br>` +
-                `<em style="color:var(--accent);">✓ Sincronizado automáticamente con NPT y Menús Hospitalarios.</em>`;
-        }
-
-        function analizarLabsAvanzados() {
-            let creat = parseFloat(document.getElementById('l_creat').value);
-            let alb = parseFloat(document.getElementById('l_alb').value);
-            let gluc = parseFloat(document.getElementById('l_gluc').value);
-            let pot = parseFloat(document.getElementById('l_k').value);
-            let tg = parseFloat(document.getElementById('l_tg').value);
-
-            let alertas = [];
-            if(creat > 1.3) alertas.push("⚠️ Creatinina elevada: Restricción de fósforo, potasio y control proteico.");
-            if(alb < 3.0) alertas.push("⚠️ Hipoalbuminemia severa (<3.0): Riesgo de edema y depleción visceral.");
-            if(gluc > 150) alertas.push("⚠️ Hiperglucemia: Ajustar cargas de dextrosa y carbohidratos simples.");
-            if(pot > 5.0) alertas.push("⚠️ Hiperpotasemia (K+ > 5.0): Eliminar frutas y verduras ricas en potasio.");
-            if(tg > 200) alertas.push("⚠️ Triglicéridos elevados: Limitar lípidos parenterales y azúcares simples.");
-
-            let box = document.getElementById('res_labs');
-            box.style.display = "block";
-            box.className = alertas.length > 0 ? "danger-box" : "results-box";
-            box.innerHTML = alertas.length > 0 ? "<strong>Alertas Bioquímicas:</strong><br>" + alertas.join("<br>") : "✅ Parámetros estables.";
-        }
-
-        function calcularNPTClinico() {
-            let vol = parseFloat(document.getElementById('n_vol').value);
-            let peso = pacienteClinico.peso;
-            let aa = parseFloat(document.getElementById('n_aa').value);
-            let dex = parseFloat(document.getElementById('n_dex').value);
-            let lip = parseFloat(document.getElementById('n_lip').value);
-
-            let kcalTot = (aa * 4) + (dex * 3.4) + (lip * 2.0);
-            let tig = (dex * 1000) / (peso * 1440);
-            let relN2 = aa > 0 ? (kcalTot / (aa / 6.25)) : 0;
-            let osm = (dex * 5) + (aa * 10) + (lip * 0.3) + 100;
-
-            document.getElementById('res_npt').style.display = "block";
-            document.getElementById('res_npt').innerHTML = `<strong>Calorías Totales NPT:</strong> ${kcalTot.toFixed(0)} kcal (Meta: ~${pacienteClinico.get.toFixed(0)})<br>` +
-                `<strong>TIG:</strong> ${tig.toFixed(2)} mg/kg/min <span class="badge">${tig > 5 ? '⚠️ Alto (>5)' : '✓ Seguro (3-5)'}</span><br>` +
-                `<strong>Relación Cal/N2:</strong> ${relN2.toFixed(1)} : 1 | <strong>Osmolaridad:</strong> ${osm.toFixed(0)} mOsm/L`;
-        }
-
-        function generarMenuAutomatico() {
-            let tipo = document.getElementById('menu_tipo').value;
-            let kcalMeta = pacienteClinico.get;
-            let protMeta = pacienteClinico.prot;
-
-            let des = "", com = "", cen = "", col1 = "", col2 = "";
-
-            if (tipo === 'normal') {
-                des = "Huevo revuelto (2 pzas) con jitomate, 2 porciones de tortilla, papaya (1 taza) y té o café ligero.";
-                col1 = "Yogur descremado (1 taza) con manzana picada.";
-                comida = "Pechuga de pollo asada (120g), arroz hervido (1 taza), puré de papa (1/2 taza), ensalada fresca de zanahoria y lechuga, agua de sabor natural baja en azúcar.";
-                col2 = "Galletas Marías (6 pzas) con infusión.";
-                cena = "Sándwich de panela (60g) con jitomate y lechuga, taza de leche descremada.";
-            } else if (tipo === 'hiposodica') {
-                des = "Omelette de claras con espinacas (sin sal añadida), pan tostado sin sal (2 pzas), melón (1 taza).";
-                col1 = "Pera picada (1 taza).";
-                comida = "Filete de pescado blanco al vapor con hierbas finas (sin sal), papa cocida al horno, ensalada de pepino sin sal, agua fresca.";
-                col2 = "Gelatina ligera (1 porción).";
-                cena = "Pechuga deshebrada con jitomate, tostadas horneadas sin sal (2 pzas), té de manzanilla.";
-            } else if (tipo === 'renal') {
-                des = "Claras de huevo con nopales cocidos, pan blanco (1 pza), manzana cocida sin cáscara.";
-                col1 = "Arroz inflado con leche de arroz (baja en fósforo).";
-                comida = "Porción moderada de pollo hervido (80g), pasta corta cocida (1 taza), chayote tierno hervido, agua de jamaica ligera.";
-                col2 = "Fruta baja en potasio (ej. jícama picada con limón).";
-                cena = "Tostadas horneadas con requesón bajo en sodio (1 pza), infusión.";
-            } else if (tipo === 'diabetica') {
-                des = "Huevo con champiñones, pan integral (1 pza), ½ taza de papaya y café negro sin azúcar.";
-                col1 = "1 manzana pequeña con un puñito de nueces.";
-                comida = "Pescado a la plancha, lentejas guisadas sin grasa añadida (1/2 taza), brócoli al vapor, agua de limón con splenda.";
-                col2 = "Pepino y jícama con limón y chile piquín.";
-                cena = "Atún en agua con ensalada de lechuga, jitomate y aceite de oliva (1 cdita), 1 rebanada de pan integral.";
-            } else {
-                dict = "Caldo de pollo desgrasado colado, gelatina de agua, té de manzanilla y agua de manzana cocida colada.";
-                des = com = cena = dict;
-                col1 = col2 = "Caldo colado o agua de arroz.";
-            }
-
-            let html = `
-                <div style="background:#0b132b; padding:15px; border-radius:8px; border:1px solid var(--accent);">
-                    <strong style="color:var(--accent);">Dieta Hospitalaria Generada: ${tipo.toUpperCase()}</strong><br>
-                    <small style="color:var(--text-dim);">Adaptada a Meta Calórica: ~${kcalMeta.toFixed(0)} kcal | Proteína: ~${protMeta.toFixed(0)}g</small>
-                    <hr style="border:0; border-top:1px solid #3a506b; margin:10px 0;">
-                    • <strong>Desayuno:</strong> ${des}<br><br>
-                    • <strong>Colación Matutina:</strong> ${col1}<br><br>
-                    • <strong>Comida:</strong> ${comida}<br><br>
-                    • <strong>Colación Vespertina:</strong> ${col2}<br><br>
-                    • <strong>Cena:</strong> ${cena}<br>
-                </div>
-            `;
-            document.getElementById('contenedor_menu_generado').innerHTML = html;
-        }
-
-        function calcularFormulaEnteralAvanzada() {
-            let vol = parseFloat(document.getElementById('lic_vol').value);
-            let leche = parseFloat(document.getElementById('lic_leche').value);
-            let avena = parseFloat(document.getElementById('lic_avena').value);
-            let aceite = parseFloat(document.getElementById('lic_aceite').value);
-            let carbo = parseFloat(document.getElementById('lic_carbo').value);
-            let prot = parseFloat(document.getElementById('lic_prot').value);
-
-            // Cálculos nutricionales estándar
-            let kcal = (leche * 0.65) + (avena * 3.7) + (aceite * 9.0) + (carbo * 4.0) + (prot * 4.0);
-            let proteinasG = (leche * 0.033) + (avena * 0.13) + prot;
-            let carboG = (leche * 0.05) + (avena * 0.65) + carbo;
-            let grasasG = (leche * 0.03) + (avena * 0.07) + aceite;
-
-            let densidad = vol > 0 ? (kcal / vol) : 0;
-            let mlHora = vol / 24;
-
-            // Equivalentes SMAE aproximados aportados por la fórmula líquida
-            let eqCerealesF = (avena / 20).toFixed(1); // 20g avena = 1 eq cereal aprox
-            let eqLecheF = (leche / 240).toFixed(1);   // 240ml leche = 1 eq leche
-            let eqGrasasF = (aceite / 5).toFixed(1);   // 5ml aceite = 1 eq grasa
-            let eqAzucaresF = (carbo / 10).toFixed(1); // 10g azucar/malto = 1 eq azúcar
-            let eqAoaF = (prot / 7).toFixed(1);        // 7g proteína = 1 eq AOA
-
-            document.getElementById('res_licuado').style.display = "block";
-            document.getElementById('res_licuado').innerHTML = `
-                <strong>Aporte Total de la Fórmula Enteral:</strong> ${kcal.toFixed(0)} kcal<br>
-                • Proteínas: <strong>${proteinasG.toFixed(1)}g</strong> | Carbohidratos: <strong>${carboG.toFixed(1)}g</strong> | Lípidos: <strong>${grasGrasasG = grasasG.toFixed(1)}g</strong><br>
-                <strong>Densidad Calórica:</strong> ${densidad.toFixed(2)} kcal/mL <span class="badge">${densidad > 1.2 ? 'Hipercalórica' : 'Normocalórica'}</span><br>
-                <strong>Velocidad de Infusión:</strong> ${mlHora.toFixed(1)} mL/h (para completar ${vol} mL en 24h)<br><hr style="border:0; border-top:1px solid #3a506b; margin:8px 0;">
-                <strong>Equivalentes SMAE Aportados por la Fórmula:</strong><br>
-                • Cereales: ${eqCerealesF} | Leche: ${eqLecheF} | Grasas: ${eqGrasasF} | Azúcares/Módulos: ${eqAzucaresF} | Proteína/AOA: ${eqAoaF}<br>
-                <em style="color:var(--accent);">✓ Fórmula balanceada para infusión por sonda o gastrostomía en piso o UCI.</em>
-            `;
-        }
-
-        // Sistema SMAE 18 Grupos
         let smaeGrupos = [
             { nombre: "Verduras", kcal: 25, prot: 2, carb: 4, grasa: 0, cant: 0 },
             { nombre: "Frutas", kcal: 60, prot: 0, carb: 15, grasa: 0, cant: 0 },
@@ -403,17 +287,335 @@
             { nombre: "Alimentos Libres de Energía", kcal: 0, prot: 0, carb: 0, grasa: 0, cant: 0 }
         ];
 
+        function switchTab(evt, tabId) {
+            let contents = document.getElementsByClassName("tab-content");
+            for (let c of contents) c.classList.remove("active");
+            let buttons = document.getElementsByClassName("tab-btn");
+            for (let b of buttons) b.classList.remove("active");
+            document.getElementById(tabId).classList.add("active");
+            evt.currentTarget.classList.add("active");
+            if(tabId === 'tab-menus') { generarMenuAutomatico(); }
+            if(tabId === 'tab-licuados') { calcularFormulaEnteralAvanzada(); }
+            if(tabId === 'tab-smae') { renderSMAE(); }
+        }
+
+        function calcularNucleoMaestro() {
+            let nutriologo = document.getElementById('m_nutriologo').value || "Lic. Nutrición";
+            let cedula = document.getElementById('m_cedula').value || "S/C";
+            let cama = document.getElementById('m_cama').value || "Piso General";
+
+            let pesoIngreso = parseFloat(document.getElementById('m_peso').value) || 0;
+            let talla = parseFloat(document.getElementById('m_talla').value) || 0;
+            let edad = parseFloat(document.getElementById('m_edad').value) || 0;
+            let genero = document.getElementById('m_genero').value;
+            let edemaVal = parseInt(document.getElementById('m_edema').value) || 0;
+            let porcentajeAvance = parseFloat(document.getElementById('m_porcentaje_avance').value) || 1.0;
+            let eqTipo = document.getElementById('m_eq').value;
+            let factor = parseFloat(document.getElementById('m_factor').value) || 1.2;
+            
+            let protGKg = parseFloat(document.getElementById('m_prot_g_kg').value) || 1.2;
+            let pCarb = parseFloat(document.getElementById('m_p_carb').value) || 55;
+            let pGras = parseFloat(document.getElementById('m_p_gras').value) || 25;
+
+            let ajusteEdema = [0, -1.5, -5.0, -10.0];
+            let pesoSeco = Math.max(30, pesoIngreso + ajusteEdema[edemaVal]);
+
+            let imc = talla > 0 ? pesoSeco / Math.pow(talla / 100, 2) : 0;
+            let imcClasif = imc < 18.5 ? "Bajo peso" : (imc < 25 ? "Normopeso" : (imc < 30 ? "Sobrepeso" : "Obesidad"));
+            
+            let pesoIdeal = (genero === 'M') ? (talla - 100 - ((talla - 150) / 4)) : (talla - 100 - ((talla - 150) / 2));
+
+            let geb = 0;
+            if(eqTipo === 'mifflin') {
+                geb = (10 * pesoSeco) + (6.25 * talla) - (5 * edad) + ((genero === 'M') ? 5 : -161);
+            } else if(eqTipo === 'harris') {
+                geb = (genero === 'M') ? (66.5 + (13.75 * pesoSeco) + (5.003 * talla) - (6.75 * edad)) : (655.1 + (9.563 * pesoSeco) + (1.85 * talla) - (4.676 * edad));
+            } else {
+                geb = pesoSeco * 25;
+            }
+            let getTeorico = geb * factor;
+            let getEfectivo = getTeorico * porcentajeAvance; // Aplicando % de progresión (Realimentación)
+
+            let protGramos = (pesoSeco * protGKg) * porcentajeAvance;
+            let kcalProt = protGramos * 4;
+
+            let pProtReal = getEfectivo > 0 ? (kcalProt / getEfectivo) * 100 : 20;
+            let sumaPorcentajes = pCarb + pGras + pProtReal;
+
+            let carbGramos = (getEfectivo * (pCarb / 100)) / 4;
+            let grasGramos = (getEfectivo * (pGras / 100)) / 9;
+
+            pacienteClinico = { pesoSeco: pesoSeco, get: getEfectivo, prot: protGramos, carb: carbGramos, gras: grasGramos };
+
+            let eqVerduras = Math.round(carbGramos * 0.025);
+            let eqFrutas = Math.round(carbGramos * 0.02);
+            let eqCereales = Math.round(carbGramos * 0.16);
+            let eqLeguminosas = 1;
+            let eqAOA = Math.round(protGramos * 0.14);
+            let eqLeche = 2;
+            let eqGrasas = Math.round(grasGramos * 0.12);
+            let eqAzucares = 1;
+
+            smaeGrupos[0].cant = eqVerduras;
+            smaeGrupos[1].cant = eqFrutas;
+            smaeGrupos[2].cant = eqCereales;
+            smaeGrupos[4].cant = eqLeguminosas;
+            smaeGrupos[7].cant = eqAOA;
+            smaeGrupos[9].cant = eqLeche;
+            smaeGrupos[13].cant = eqGrasas;
+            smaeGrupos[15].cant = eqAzucares;
+
+            let resBox = document.getElementById('res_master');
+            if(resBox) {
+                resBox.innerHTML = `
+                    <strong>🏥 Datos Institucionales:</strong> Nutriólogo(a): <strong>${nutriologo}</strong> (Céd. ${cedula}) | Ubicación: <strong>${cama}</strong><hr style="border:0; border-top:1px solid #415a77; margin:8px 0;">
+                    <strong>Antropometría & Ajuste Hospitalario:</strong><br>
+                    • Peso Seco Ajustado: <strong>${pesoSeco.toFixed(1)} kg</strong> | Peso Ideal: <strong>${pesoIdeal.toFixed(1)} kg</strong><br>
+                    • IMC: <strong>${imc.toFixed(1)} kg/m²</strong> (${imcClasif})<br><hr style="border:0; border-top:1px solid #415a77; margin:8px 0;">
+                    <strong>Prescripción con Progresión (${(porcentajeAvance*100).toFixed(0)}%):</strong><br>
+                    • GET Teórico: ${getTeorico.toFixed(0)} kcal | <strong>GET Efectivo (Prescrito):</strong> <strong>${getEfectivo.toFixed(0)} kcal/día</strong><br>
+                    • Proteínas: <strong>${protGramos.toFixed(0)} g</strong> (${kcalProt.toFixed(0)} kcal | <strong>${pProtReal.toFixed(1)}%</strong> del GET)<br>
+                    • Carbohidratos: <strong>${carbGramos.toFixed(0)} g</strong> (${pCarb}%) | Lípidos: <strong>${grasGramos.toFixed(0)} g</strong> (${pGras}%)<br><hr style="border:0; border-top:1px solid #415a77; margin:8px 0;">
+                    <strong>Traducción a Equivalentes SMAE (Cargados automáticamente en Pestaña 6):</strong><br>
+                    • Verduras: ${eqVerduras} | Frutas: ${eqFrutas} | Cereales: ${eqCereales} | Leguminosas: ${eqLeguminosas}<br>
+                    • AOA: ${eqAOA} | Leche: ${eqLeche} | Grasas: ${eqGrasas} | Azúcares: ${eqAzucares}<br>
+                    <em style="color:var(--accent);">✓ Sincronizado en tiempo real con NPT, Menús y Licuados por toma.</em>
+                `;
+            }
+            if(document.getElementById('tab-menus').classList.contains('active')) {
+                generarMenuAutomatico();
+            }
+            renderSMAE();
+        }
+
+        function analizarLabsAvanzados() {
+            let creat = parseFloat(document.getElementById('l_creat').value) || 0;
+            let alb = parseFloat(document.getElementById('l_alb').value) || 0;
+            let gluc = parseFloat(document.getElementById('l_gluc').value) || 0;
+            let pot = parseFloat(document.getElementById('l_k').value) || 0;
+            let tg = parseFloat(document.getElementById('l_tg').value) || 0;
+
+            let alertas = [];
+            if(creat > 1.3) alertas.push("⚠️ Creatinina elevada: Restricción de fósforo, potasio y control proteico.");
+            if(alb < 3.0) alertas.push("⚠️ Hipoalbuminemia severa (<3.0): Riesgo de edema y depleción visceral.");
+            if(gluc > 150) alertas.push("⚠️ Hiperglucemia: Ajustar cargas de dextrosa y carbohidratos simples.");
+            if(pot > 5.0) alertas.push("⚠️ Hiperpotasemia (K+ > 5.0): Eliminar frutas y verduras ricas en potasio.");
+            if(tg > 200) alertas.push("⚠️ Triglicéridos elevados: Limitar lípidos parenterales y azúcares simples.");
+
+            let box = document.getElementById('res_labs');
+            box.style.display = "block";
+            box.className = alertas.length > 0 ? "danger-box" : "results-box";
+            box.innerHTML = alertas.length > 0 ? "<strong>Alertas Bioquímicas:</strong><br>" + alertas.join("<br>") : "✅ Parámetros estables.";
+        }
+
+        function calcularNPTClinico() {
+            let vol = parseFloat(document.getElementById('n_vol').value) || 0;
+            let peso = pacienteClinico.pesoSeco;
+            let aa = parseFloat(document.getElementById('n_aa').value) || 0;
+            let dex = parseFloat(document.getElementById('n_dex').value) || 0;
+            let lip = parseFloat(document.getElementById('n_lip').value) || 0;
+
+            let kcalTot = (aa * 4) + (dex * 3.4) + (lip * 2.0);
+            let tig = peso > 0 ? (dex * 1000) / (peso * 1440) : 0;
+            let relN2 = aa > 0 ? (kcalTot / (aa / 6.25)) : 0;
+            let osm = (dex * 5) + (aa * 10) + (lip * 0.3) + 100;
+
+            let box = document.getElementById('res_npt');
+            box.style.display = "block";
+            box.innerHTML = `<strong>Calorías Totales NPT:</strong> ${kcalTot.toFixed(0)} kcal (Meta: ~${pacienteClinico.get.toFixed(0)})<br>` +
+                `<strong>TIG:</strong> ${tig.toFixed(2)} mg/kg/min <span class="badge">${tig > 5 ? '⚠️ Alto (>5)' : '✓ Seguro (3-5)'}</span><br>` +
+                `<strong>Relación Cal/N2:</strong> ${relN2.toFixed(1)} : 1 | <strong>Osmolaridad:</strong> ${osm.toFixed(0)} mOsm/L`;
+        }
+
+        function generarMenuAutomatico() {
+            let tipo = document.getElementById('menu_tipo').value;
+            let kcalMeta = pacienteClinico.get;
+            let protMeta = pacienteClinico.prot;
+            let nutriologo = document.getElementById('m_nutriologo').value || "Lic. Nutrición";
+            let cedula = document.getElementById('m_cedula').value || "S/C";
+            let cama = document.getElementById('m_cama').value || "Piso General";
+
+            let des = "", com = "", cen = "", col1 = "", col2 = "";
+
+            if (tipo === 'normal') {
+                des = `Huevo revuelto (2 pzas, aprox ${Math.round(protMeta*0.25)}g prot), 2 tortillas de maíz, papaya (1 taza) y té.`;
+                col1 = "Yogur descremado (1 taza) con manzana picada.";
+                comida = `Pechuga de pollo a la plancha (${Math.round(protMeta*0.45)}g prot), arroz al vapor (1 taza), puré de papa natural (1/2 taza), ensalada fresca, agua de fruta natural.`;
+                col2 = "Galletas Marías (6 pzas) con infusión.";
+                cena = `Sándwich de pan blanco con queso panela (${Math.round(protMeta*0.3)}g prot) y jitomate, leche descremada.`;
+            } else if (tipo === 'diabetica') {
+                des = `Huevo con champiñones (${Math.round(protMeta*0.25)}g prot), 1 pan integral, ½ taza de papaya y café negro sin azúcar.`;
+                col1 = "1 manzana pequeña con un puñito de nueces.";
+                comida = `Filete de pescado a la plancha (${Math.round(protMeta*0.45)}g prot), lentejas cocidas sin grasa (1/2 taza), brócoli y calabacitas al vapor, agua de limón sin azúcar.`;
+                col2 = "Pepino y jícama con limón.";
+                cena = `Ensalada con atún en agua (${Math.round(protMeta*0.3)}g prot), lechuga, jitomate, aceite de oliva (1 cdita) y 1 tostada integral.`;
+            } else if (tipo === 'hiposodica') {
+                des = `Omelette de claras con espinacas sin sal (${Math.round(protMeta*0.25)}g prot), pan tostado sin sal, melón (1 taza).`;
+                col1 = "Pera fresca picada (1 taza).";
+                comida = `Filete de pescado al vapor con hierbas y cero sal (${Math.round(protMeta*0.45)}g prot), papa al horno, ensalada sin sal, agua fresca.`;
+                col2 = "Gelatina ligera de agua (1 porción).";
+                cena = `Pechuga deshebrada con jitomate sin sal (${Math.round(protMeta*0.3)}g prot), tostadas sin sal (2 pzas), té.`;
+            } else if (tipo === 'renal_dialisis') {
+                des = `Claras con jamón de pavo bajo en sodio (${Math.round(protMeta*0.3)}g prot), pan blanco (1 pza), manzana.`;
+                col1 = "Yogur griego descremado.";
+                comida = `Pechuga de pollo asada o bistec magro (${Math.round(protMeta*0.5)}g prot), arroz blanco (1.5 tazas), chayote cocido, agua clara.`;
+                col2 = "Barrita de arroz inflado.";
+                cena = `Queso cottage bajo en grasa (${Math.round(protMeta*0.2)}g prot), tostadas horneadas, infusión.`;
+            } else if (tipo === 'renal_sindiálisis') {
+                des = `Pan blanco con mermelada baja en proteína, ½ taza de papaya, café negro ligero.`;
+                col1 = "Jícama picada con limón.";
+                comida = `Pollo hervido con doble lavado (${Math.round(protMeta*0.4)}g prot controlada), pasta corta hervida (1 taza), calabacita sin semilla, agua de manzana.`;
+                col2 = "Gelatina de agua.";
+                cena = `Tostadas horneadas con aceite de oliva y puré de manzana, té.`;
+            } else if (tipo === 'hiperproteica') {
+                des = `Omelette de 3 claras y 1 huevo (${Math.round(protMeta*0.3)}g prot), licuado con leche descremada, avena y proteína en polvo, papaya.`;
+                col1 = "Queso cottage (1/2 taza) con piña.";
+                comida = `Filete de res magro o pollo (${Math.round(protMeta*0.45)}g prot), quinoa o arroz (1 taza), frijoles (1/2 taza), verduras al vapor, agua de sabor.`;
+                col2 = "Yogur griego natural con chía.";
+                cena = `Atún en agua con ensalada abundante y aderezo de yogur (${Math.round(protMeta*0.25)}g prot), pan integral.`;
+            } else if (tipo === 'laxante') {
+                des = `Cóctel de papaya, melón y ciruela pasa (1.5 tazas), avena cocida en leche (${Math.round(protMeta*0.25)}g prot), pan integral con aguacate.`;
+                col1 = "2 kiwis frescos y vaso de agua templada.";
+                comida = `Pechuga de pollo a la plancha (${Math.round(protMeta*0.45)}g prot), arroz integral (1 taza), lentejas (1/2 taza), ensalada cruda con espinacas, agua de tamarindo.`;
+                col2 = "Manzana con cáscara bien lavada.";
+                cena = `Sándwich integral con queso panela, jitomate y lechuga (${Math.round(protMeta*0.3)}g prot), té de manzanilla.`;
+            } else if (tipo === 'astringente') {
+                des = `Huevo cocido (1 pza), pan tostado blanco (2 pzas), manzana cocida sin cáscara, té negro.`;
+                col1 = "Gelatina natural de agua y galletas Marías (5 pzas).";
+                comida = `Pechuga de pollo hervida y deshebrada (${Math.round(protMeta*0.45)}g prot), arroz blanco cocido con caldo (1 taza), zanahoria cocida, agua de arroz tostado.`;
+                col2 = "Plátano tabasco maduro y manzanilla.";
+                cena = `Papas cocidas al vapor sin cáscara con pollo deshebrado (${Math.round(protMeta*0.3)}g prot), té.`;
+            } else if (tipo === 'pure') {
+                des = `Puré de huevo con caldo, papilla de papaya, cereal o avena bien licuada y colada.`;
+                col1 = "Jugo de manzana colado.";
+                comida = `Puré terso de pollo con caldo, puré de papa suave y crema de zanahoria licuada sin grumos.`;
+                col2 = "Néctar de fruta colado.";
+                cena = `Puré de queso fresco con caldo de pollo y papilla de plátano maduro.`;
+            } else if (tipo === 'vegetariana') {
+                des = `Tofu revuelto a la mexicana (${Math.round(protMeta*0.25)}g prot vegetal), frijoles de la olla (1/2 taza), papaya, pan integral.`;
+                col1 = "Yogur de soya con frutos rojos.";
+                comida = `Hamburguesa de lentejas y avena al horno (${Math.round(protMeta*0.45)}g prot), quinoa (1 taza), ensalada mixta con ajonjolí, agua de jamaica.`;
+                col2 = "Mix de semillas y frutos secos.";
+                cena = `Sopa de pasta con cubitos de tofu (${Math.round(protMeta*0.3)}g prot), nopales asados, té.`;
+            } else if (tipo === 'liquida') {
+                let liq = `Caldo de pollo desgrasado y colado (${Math.round(protMeta*0.3)}g prot líquida), gelatina de agua, té de manzanilla y agua de manzana cocida colada.`;
+                des = com = cena = liq;
+                col1 = col2 = "Caldo colado o agua de arroz.";
+            }
+
+            let html = `
+                <div style="background:#0d1b2a; padding:15px; border-radius:8px; border:1px solid var(--accent);">
+                    <div style="font-size:0.8rem; color:var(--text-dim); margin-bottom:8px; border-bottom:1px dashed #415a77; padding-bottom:5px;">
+                        🏥 <strong>Hospital - Servicio de Nutrición</strong> | Paciente en: <strong>${cama}</strong><br>
+                        Prescribe: <strong>${nutriologo}</strong> (Céd. Prof. ${cedula})
+                    </div>
+                    <strong style="color:var(--accent); font-size:1.05rem;">Dieta Hospitalaria: ${tipo.toUpperCase()}</strong><br>
+                    <small style="color:var(--accent);">Meta Calórica Efectiva: ~<strong>${kcalMeta.toFixed(0)} kcal</strong> | Proteína Total: ~<strong>${protMeta.toFixed(0)}g</strong></small>
+                    <hr style="border:0; border-top:1px solid #415a77; margin:10px 0;">
+                    • <strong>Desayuno:</strong> ${des}<br><br>
+                    • <strong>Colación Matutina:</strong> ${col1}<br><br>
+                    • <strong>Comida:</strong> ${comida}<br><br>
+                    • <strong>Colación Vespertina:</strong> ${col2}<br><br>
+                    • <strong>Cena:</strong> ${cena}<br>
+                    <div style="margin-top:15px; text-align:right; font-size:0.85rem; border-top:1px solid #415a77; pt:10px;">
+                        ____________________________________________<br>
+                        Firma y Cédula del Nutriólogo(a) Tratante
+                    </div>
+                </div>
+            `;
+            let menuCont = document.getElementById('contenedor_menu_generado');
+            if(menuCont) menuCont.innerHTML = html;
+        }
+
+        function calcularFormulaEnteralAvanzada() {
+            let tomas = parseInt(document.getElementById('lic_tomas').value) || 5;
+            let volTotal = parseFloat(document.getElementById('lic_vol').value) || 1000;
+            let leche = parseFloat(document.getElementById('lic_leche').value) || 0;
+            let avena = parseFloat(document.getElementById('lic_avena').value) || 0;
+            let harinaArroz = parseFloat(document.getElementById('lic_harina_arroz').value) || 0;
+            let panBlanco = parseFloat(document.getElementById('lic_pan_blanco').value) || 0;
+            let galletas = parseFloat(document.getElementById('lic_galletas').value) || 0;
+            let fruta = parseFloat(document.getElementById('lic_fruta').value) || 0;
+            let polimerica = parseFloat(document.getElementById('lic_polimerica').value) || 0;
+            let prot = parseFloat(document.getElementById('lic_prot').value) || 0;
+            let aceite = parseFloat(document.getElementById('lic_aceite').value) || 0;
+            let carbo = parseFloat(document.getElementById('lic_carbo').value) || 0;
+
+            let nutriologo = document.getElementById('m_nutriologo').value || "Lic. Nutrición";
+            let cedula = document.getElementById('m_cedula').value || "S/C";
+            let cama = document.getElementById('m_cama').value || "Piso General";
+
+            let kcal = (leche * 0.65) + (avena * 3.7) + (harinaArroz * 3.6) + (panBlanco * 2.65) + (galletas * 4.2) + (fruta * 0.9) + (polimerica * 4.0) + (prot * 4.0) + (aceite * 9.0) + (carbo * 4.0);
+            
+            let proteinasG = (leche * 0.033) + (avena * 0.13) + (harinaArroz * 0.07) + (panBlanco * 0.08) + (galletas * 0.07) + (polimerica * 0.85) + prot;
+            let carboG = (leche * 0.05) + (avena * 0.65) + (harinaArroz * 0.78) + (panBlanco * 0.50) + (galletas * 0.70) + (fruta * 0.22) + (polimerica * 0.05) + carbo;
+            let grasasG = (leche * 0.03) + (avena * 0.07) + (harinaArroz * 0.01) + (panBlanco * 0.03) + (galletas * 0.12) + (aceite);
+
+            let densidad = volTotal > 0 ? (kcal / volTotal) : 0;
+            let mlPorToma = tomas > 0 ? (volTotal / tomas) : 0;
+
+            // Validación de suficiencia vs Meta del paciente
+            let metaKcal = pacienteClinico.get;
+            let diferenciaKcal = kcal - metaKcal;
+            let avisoSuficiencia = "";
+            if (Math.abs(diferenciaKcal) <= 150) {
+                avisoSuficiencia = `<span style="color:#00f2fe;">✓ Mezcla equilibrada: Cubre adecuadamente la meta energética (${metaKcal.toFixed(0)} kcal).</span>`;
+            } else if (diferenciaKcal > 150) {
+                avisoSuficiencia = `<span style="color:#f7b733;">⚠️ Exceso calórico: Aporta ${kcal.toFixed(0)} kcal (Meta: ${metaKcal.toFixed(0)} kcal). Considera reducir ingredientes.</span>`;
+            } else {
+                avisoSuficiencia = `<span style="color:#ff4b2b;">⚠️ Déficit calórico: Aporta ${kcal.toFixed(0)} kcal (Meta: ${metaKcal.toFixed(0)} kcal). Falta energía, añade más módulos o cereal.</span>`;
+            }
+
+            // Desglose por toma (dividiendo entre el número de tomas)
+            let volToma = (volTotal / tomas).toFixed(0);
+            let lecheToma = (leche / tomas).toFixed(1);
+            let avenaToma = (avena / tomas).toFixed(1);
+            let harinaToma = (harinaArroz / tomas).toFixed(1);
+            let panToma = (panBlanco / tomas).toFixed(1);
+            let galletasToma = (galletas / tomas).toFixed(1);
+            let frutaToma = (fruta / tomas).toFixed(1);
+            let polimericaToma = (polimerica / tomas).toFixed(1);
+            let protToma = (prot / tomas).toFixed(1);
+            let aceiteToma = (aceite / tomas).toFixed(1);
+            let carboToma = (carbo / tomas).toFixed(1);
+            let kcalToma = (kcal / tomas).toFixed(0);
+
+            let box = document.getElementById('res_licuado');
+            box.style.display = "block";
+            box.innerHTML = `
+                <div style="font-size:0.8rem; color:var(--text-dim); margin-bottom:8px; border-bottom:1px dashed #415a77; padding-bottom:5px;">
+                    🏥 <strong>Hospital - Soporte Nutricional</strong> | Cama: <strong>${cama}</strong><br>
+                    Prescribe: <strong>${nutriologo}</strong> (Céd. Prof. ${cedula})
+                </div>
+                <strong>Resumen Total de la Mezcla (${volTotal} mL):</strong> ${kcal.toFixed(0)} kcal<br>
+                • Proteínas: <strong>${proteinasG.toFixed(1)}g</strong> | Carbohidratos: <strong>${carboG.toFixed(1)}g</strong> | Lípidos: <strong>${grasasG.toFixed(1)}g</strong><br>
+                <strong>Densidad Calórica:</strong> ${densidad.toFixed(2)} kcal/mL | ${avisoSuficiencia}<br>
+                <hr style="border:0; border-top:1px solid #415a77; margin:10px 0;">
+                <strong style="color:var(--accent);">📋 Indicación por CADA UNA de las ${tomas} Tomas (Volumen por toma: ~${volToma} mL | ~${kcalToma} kcal):</strong><br>
+                • Leche: <strong>${lecheToma} mL</strong> | Avena: <strong>${avenaToma} g</strong><br>
+                • Harina de Arroz: <strong>${harinaToma} g</strong> | Pan Blanco: <strong>${panToma} g</strong><br>
+                • Galletas Marías: <strong>${galletasToma} g</strong> | Fruta: <strong>${frutaToma} g</strong><br>
+                • Polimérica / Caseinato: <strong>${polimericaToma} g</strong> | Módulo Proteico Extra: <strong>${protToma} g</strong><br>
+                • Aceite / MCT: <strong>${aceiteToma} mL</strong> | Maltodextrina / Azúcar: <strong>${carboToma} g</strong><br>
+                <div style="margin-top:15px; text-align:right; font-size:0.85rem; border-top:1px solid #415a77; pt:10px;">
+                    ____________________________________________<br>
+                    Firma y Cédula del Nutriólogo(a) Tratante
+                </div>
+            `;
+        }
+
         function renderSMAE() {
             let container = document.getElementById('smae-list');
+            if(!container) return;
             container.innerHTML = "";
             smaeGrupos.forEach((g, idx) => {
                 container.innerHTML += `
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; padding:6px; background:#0b132b; border-radius:6px; border:1px solid #3a506b;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; padding:6px; background:#0d1b2a; border-radius:6px; border:1px solid #415a77;">
                         <span style="font-size:0.8rem; font-weight:600;">${g.nombre} (${g.kcal} kcal)</span>
                         <div style="display:flex; align-items:center; gap:6px;">
                             <strong><span id="smae_c_${idx}">${g.cant}</span></strong>
                             <button onclick="modSMAE(${idx}, -1)" style="padding:2px 8px; background:#ff4b2b; color:#fff; border:none; border-radius:4px; cursor:pointer;">-</button>
-                            <button onclick="modSMAE(${idx}, 1)" style="padding:2px 8px; background:#00f2fe; color:#0b132b; border:none; border-radius:4px; font-weight:bold; cursor:pointer;">+</button>
+                            <button onclick="modSMAE(${idx}, 1)" style="padding:2px 8px; background:#00f2fe; color:#0d1b2a; border:none; border-radius:4px; font-weight:bold; cursor:pointer;">+</button>
                         </div>
                     </div>
                 `;
@@ -423,28 +625,31 @@
 
         function modSMAE(idx, delta) {
             smaeGrupos[idx].cant = Math.max(0, smaeGrupos[idx].cant + delta);
-            document.getElementById(`smae_c_${idx}`).innerText = smaeGrupos[idx].cant;
+            let spanElem = document.getElementById(`smae_c_${idx}`);
+            if(spanElem) spanElem.innerText = smaeGrupos[idx].cant;
             actualizarTotalesSMAE();
-            localStorage.setItem('smae_hosp_v4', JSON.stringify(smaeGrupos));
+            localStorage.setItem('smae_hosp_v11', JSON.stringify(smaeGrupos));
         }
 
         function actualizarTotalesSMAE() {
             let k=0, p=0, c=0, g=0;
             smaeGrupos.forEach(item => { k += item.kcal * item.cant; p += item.prot * item.cant; c += item.carb * item.cant; g += item.grasa * item.cant; });
-            document.getElementById('smae-totales').innerText = `Total: ${k} kcal | Prot: ${p}g | Carbs: ${c}g | Grasas: ${g}g`;
+            let totElem = document.getElementById('smae-totales');
+            if(totElem) totElem.innerText = `Total: ${k} kcal | Prot: ${p}g | Carbs: ${c}g | Grasas: ${g}g`;
         }
 
         function reiniciarSMAE() {
             smaeGrupos.forEach(i => i.cant = 0);
             renderSMAE();
-            localStorage.removeItem('smae_hosp_v4');
+            localStorage.removeItem('smae_hosp_v11');
         }
 
         window.onload = function() {
-            let saved = localStorage.getItem('smae_hosp_v4');
+            let saved = localStorage.getItem('smae_hosp_v11');
             if(saved) { try { smaeGrupos = JSON.parse(saved); } catch(e){} }
             renderSMAE();
             calcularNucleoMaestro();
+            calcularFormulaEnteralAvanzada();
         }
     </script>
 </body>
